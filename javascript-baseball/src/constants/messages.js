@@ -4,4 +4,4 @@ const MESSAGE = {
   WIN: "3스트라이크\n3개의 숫자를 모두 맞히셨습니다! 게임 종료",
 };
 
-module.exports = { INPUT };
+module.exports = { MESSAGE };

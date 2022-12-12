@@ -24,10 +24,10 @@ class Game {
   }
 
   selectNumbers() {
+    console.log(this.computerNumbers);
     Console.readLine(MESSAGE.INPUT, (numbers) => {
       Validation.checkNumbers(numbers);
       this.numbersList = numbers;
-      console.log(this.computerNumbers);
       const result = new Result(this.computerNumbers, this.numbersList);
     });
   }

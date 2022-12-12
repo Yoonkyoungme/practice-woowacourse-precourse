@@ -5,7 +5,9 @@ const Validation = {
   checkNumbers(numbers) {
     this.checkNumbersLength(numbers);
     this.checkNumbersType(numbers);
+    this.checkNumbersOverlap(numbers);
   },
+
   checkNumbersLength(numbers) {
     try {
       if (numbers.length !== 3) {
@@ -20,6 +22,17 @@ const Validation = {
     try {
       if (isNaN(numbers)) {
         throw new Error(ERROR.TYPE);
+      }
+    } catch (error) {
+      Console.print(error.message);
+    }
+  },
+
+  checkNumbersOverlap(numbers) {
+    const removeOverlap = new Set(numbers);
+    try {
+      if (removeOverlap.size !== numbers.length) {
+        throw new Error(ERROR.OVERLAP);
       }
     } catch (error) {
       Console.print(error.message);

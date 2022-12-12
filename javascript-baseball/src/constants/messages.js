@@ -7,6 +7,7 @@ const MESSAGE = {
 
 const ERROR = {
   LENGTH: "3자리 수를 입력하세요.",
+  TYPE: "숫자를 입력하세요.",
 };
 
 module.exports = { MESSAGE, ERROR };

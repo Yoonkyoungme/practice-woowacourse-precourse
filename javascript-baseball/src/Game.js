@@ -1,6 +1,7 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const { MESSAGE } = require("./constants/messages");
 const Validation = require("./Validation");
+const Result = require("./Result");
 
 class Game {
   constructor() {
@@ -25,6 +26,9 @@ class Game {
   selectNumbers() {
     Console.readLine(MESSAGE.INPUT, (numbers) => {
       Validation.checkNumbers(numbers);
+      this.numbersList = numbers;
+      console.log(this.computerNumbers);
+      const result = new Result(this.computerNumbers, this.numbersList);
     });
   }
 }

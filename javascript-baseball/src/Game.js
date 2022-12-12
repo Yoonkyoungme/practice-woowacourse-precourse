@@ -7,6 +7,7 @@ class Game {
   constructor() {
     this.computerNumbers = [];
     this.numbersList = "";
+    this.result;
     this.start();
   }
   start() {
@@ -28,8 +29,27 @@ class Game {
     Console.readLine(MESSAGE.INPUT, (numbers) => {
       Validation.checkNumbers(numbers);
       this.numbersList = numbers;
-      const result = new Result(this.computerNumbers, this.numbersList);
+      this.result = new Result(this.computerNumbers, this.numbersList);
+      this.resultAction();
     });
+  }
+
+  resultAction() {
+    if (this.result) {
+      Console.readLine(MESSAGE.SUGGESTION, (suggestion) => {
+        this.retryOrQuitGame(suggestion);
+      });
+    }
+  }
+
+  retryOrQuitGame(suggestion) {
+    const answer = parseInt(suggestion);
+    if (answer === 1) {
+      return this.start();
+    }
+    if (answer === 2) {
+      Console.close();
+    }
   }
 }
 

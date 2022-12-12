@@ -24,7 +24,7 @@ class Game {
 
   selectNumbers() {
     Console.readLine(MESSAGE.INPUT, (numbers) => {
-      console.log(numbers);
+      Validation.checkNumbers(numbers);
     });
   }
 }

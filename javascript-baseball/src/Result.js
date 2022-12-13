@@ -8,6 +8,7 @@ class Result {
     this.numbersList = numbersList;
     this.strike = 0;
     this.ball = 0;
+    this.isSolve = false;
     this.getResultCount();
   }
 
@@ -26,10 +27,10 @@ class Result {
   printResult() {
     if (this.strike === 3) {
       Console.print(MESSAGE.WIN);
-      return true;
+      this.isSolve = true;
+      return;
     }
     this.retryGame();
-    return false;
   }
 
   retryGame() {

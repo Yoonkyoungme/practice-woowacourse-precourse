@@ -35,10 +35,12 @@ class Game {
   }
 
   resultAction() {
-    if (this.result) {
+    if (this.result.isSolve) {
       Console.readLine(MESSAGE.SUGGESTION, (suggestion) => {
         this.retryOrQuitGame(suggestion);
       });
+    } else {
+      this.selectNumbers();
     }
   }
 

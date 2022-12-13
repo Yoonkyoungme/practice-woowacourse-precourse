@@ -44,6 +44,7 @@ class Game {
 
   retryOrQuitGame(suggestion) {
     const answer = parseInt(suggestion);
+    Validation.checkCorrectNumber(answer);
     if (answer === 1) {
       return this.start();
     }

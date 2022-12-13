@@ -9,6 +9,7 @@ const ERROR = {
   LENGTH: "3자리 수를 입력하세요.",
   TYPE: "숫자를 입력하세요.",
   OVERLAP: "서로 다른 수를 입력하세요.",
+  SELECT: "숫자 1 또는 2를 입력하세요.",
 };
 
 module.exports = { MESSAGE, ERROR };

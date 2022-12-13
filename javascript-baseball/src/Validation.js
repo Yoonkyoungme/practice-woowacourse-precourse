@@ -38,6 +38,17 @@ const Validation = {
       Console.print(error.message);
     }
   },
+
+  checkCorrectNumber(selection) {
+    try {
+      if (selection !== 1 && selection !== 2) {
+        throw new Error(ERROR.SELECT);
+      }
+    } catch (error) {
+      Console.print(error.message);
+    }
+    return selection;
+  },
 };
 
 module.exports = Validation;

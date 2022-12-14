@@ -11,16 +11,7 @@ const Validation = {
     } catch (error) {
       Console.print(error.message);
     }
-  },
-
-  checkNumbersLength(numbers) {
-    try {
-      if (numbers.length !== 3) {
-        throw new Error(ERROR.LENGTH);
-      }
-    } catch (error) {
-      Console.print(error.message);
-    }
+    return size;
   },
 };
 

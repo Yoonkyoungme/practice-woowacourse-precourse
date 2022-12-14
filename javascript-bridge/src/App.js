@@ -6,7 +6,7 @@ class App {
   constructor() {}
   play() {
     Console.print(INPUT.START);
-    const game = new Game();
+    const game = new Game().inputBridgeSize();
   }
 }
 

@@ -1,12 +1,19 @@
 const InputView = require("./InputView");
+const Validation = require("./Validation");
 
 class Game {
   constructor() {
-    this.inputBridgeSize();
+    this.bridgeSize;
+    this.moving;
   }
 
   inputBridgeSize() {
-    InputView.readBridgeSize();
+    InputView.readBridgeSize(this.handleBridgeSize.bind(this));
+  }
+
+  handleBridgeSize(size) {
+    const getValue = Validation.checkInputNumber(size);
+    this.bridgeSize = getValue;
   }
 }
 

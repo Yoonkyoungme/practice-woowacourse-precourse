@@ -1,4 +1,4 @@
-const Validation = require("./Validation");
+const Game = require("./Game");
 const { Console } = require("@woowacourse/mission-utils");
 const { INPUT } = require("./constants/messages");
 
@@ -9,10 +9,8 @@ const InputView = {
   /**
    * 다리의 길이를 입력받는다.
    */
-  readBridgeSize() {
-    Console.readLine(INPUT.SIZE, (size) => {
-      Validation.checkInputNumber(size);
-    });
+  readBridgeSize(callback) {
+    Console.readLine(INPUT.SIZE, callback);
   },
 
   /**

@@ -17,7 +17,7 @@ const BridgeMaker = {
         bridgeList.push("U");
       }
     }
-    console.log(bridgeList);
+    return bridgeList;
   },
 };
 

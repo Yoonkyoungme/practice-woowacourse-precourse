@@ -17,11 +17,12 @@ const Validation = {
 
   checkInputMoving(moving) {
     try {
-      if (moving !== "D" || moving !== "U") {
+      if (moving !== "D" && moving !== "U") {
         throw new Error(ERROR.MOVING);
       }
     } catch (error) {
       Console.print(error.message);
+      return false;
     }
     return moving;
   },

@@ -20,6 +20,9 @@ class Game {
 
   handleBridgeSize(size) {
     this.bridgeSize = Validation.checkInputSize(size);
+    if (!this.bridgeSize) {
+      return this.inputBridgeSize();
+    }
     this.brigeList = BridgeMaker.makeBridge(
       this.bridgeSize,
       BridgeRandomNumberGenerator.generate
@@ -29,6 +32,9 @@ class Game {
 
   handleMovingBridge(moving) {
     this.moving = Validation.checkInputMoving(moving);
+    if (!this.moving) {
+      return this.inputMovingBridge();
+    }
   }
 }
 

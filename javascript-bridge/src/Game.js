@@ -5,9 +5,9 @@ const Validation = require("./Validation");
 
 class Game {
   constructor() {
+    this.brigeList;
     this.bridgeSize;
     this.moving;
-    this.brigeList;
   }
 
   inputBridgeSize() {
@@ -19,9 +19,7 @@ class Game {
   }
 
   handleBridgeSize(size) {
-    const getValue = Validation.checkInputNumber(size);
-    this.bridgeSize = getValue;
-
+    this.bridgeSize = Validation.checkInputSize(size);
     this.brigeList = BridgeMaker.makeBridge(
       this.bridgeSize,
       BridgeRandomNumberGenerator.generate
@@ -30,7 +28,7 @@ class Game {
   }
 
   handleMovingBridge(moving) {
-    console.log(moving);
+    this.moving = Validation.checkInputMoving(moving);
   }
 }
 

@@ -2,7 +2,7 @@ const { Console } = require("@woowacourse/mission-utils");
 const { ERROR } = require("./constants/messages");
 
 const Validation = {
-  checkInputNumber(inputSize) {
+  checkInputSize(inputSize) {
     const size = parseInt(inputSize);
     try {
       if (!(size >= 3 && size <= 20)) {
@@ -10,8 +10,20 @@ const Validation = {
       }
     } catch (error) {
       Console.print(error.message);
+      return false;
     }
     return size;
+  },
+
+  checkInputMoving(moving) {
+    try {
+      if (moving !== "D" || moving !== "U") {
+        throw new Error(ERROR.MOVING);
+      }
+    } catch (error) {
+      Console.print(error.message);
+    }
+    return moving;
   },
 };
 

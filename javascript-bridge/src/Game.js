@@ -33,14 +33,14 @@ class Game {
       this.bridgeSize,
       BridgeRandomNumberGenerator.generate
     );
+    console.log(this.brigeList);
     this.inputMovingBridge();
   }
 
   handleMovingBridge(moving) {
     this.direction = Validation.checkInputMoving(moving);
-    if (!this.direction) {
-      return this.inputMovingBridge();
-    }
+    if (!this.direction) return this.inputMovingBridge();
+
     this.canMove = new BridgeGame().move(
       this.brigeList,
       this.direction,
@@ -61,7 +61,6 @@ class Game {
         ? (this.upperBrigde.push("O"), this.lowerBrigde.push(" "))
         : (this.upperBrigde.push(" "), this.lowerBrigde.push("O"));
     }
-    console.log(this.upperBrigde, this.lowerBrigde);
     OutputView.printMap(this.upperBrigde, this.lowerBrigde);
   }
 
@@ -70,8 +69,8 @@ class Game {
       this.index = 0;
     } else {
       this.index = this.canMove;
+      this.inputMovingBridge();
     }
-    console.log(this.index);
   }
 }
 

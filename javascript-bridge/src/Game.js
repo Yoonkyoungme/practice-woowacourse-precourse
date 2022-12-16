@@ -26,6 +26,10 @@ class Game {
     InputView.readMoving(this.handleMovingBridge.bind(this));
   }
 
+  inputRetryOrQuit() {
+    InputView.readGameCommand(this.handleRetryOrQuit.bind(this));
+  }
+
   handleBridgeSize(size) {
     this.bridgeSize = Validation.checkInputSize(size);
     if (!this.bridgeSize) {
@@ -42,7 +46,6 @@ class Game {
   handleMovingBridge(moving) {
     this.direction = Validation.checkInputMoving(moving);
     if (!this.direction) return this.inputMovingBridge();
-
     this.canMove = new BridgeGame().move(
       this.brigeList,
       this.direction,
@@ -51,6 +54,10 @@ class Game {
 
     this.makeMap();
     this.getIndex();
+  }
+
+  handleRetryOrQuit(command) {
+    const result = Validation.checkInputCommand(command);
   }
 
   makeMap() {
@@ -67,7 +74,7 @@ class Game {
   }
 
   getIndex() {
-    if (!this.canMove) return (this.index = 0);
+    if (!this.canMove) return this.inputRetryOrQuit();
     this.index = this.canMove;
     this.index === this.bridgeSize
       ? OutputView.printResult(this.output, this.tries, true)

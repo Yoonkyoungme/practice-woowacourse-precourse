@@ -26,6 +26,18 @@ const Validation = {
     }
     return moving;
   },
+
+  checkInputCommand(command) {
+    try {
+      if (command !== "R" && command !== "Q") {
+        throw new Error(ERROR.COMMAND);
+      }
+    } catch (error) {
+      Console.print(error.message);
+      return false;
+    }
+    return command;
+  },
 };
 
 module.exports = Validation;

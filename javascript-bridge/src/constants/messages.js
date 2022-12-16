@@ -6,12 +6,15 @@ const INPUT = {
 
 const OUTPUT = {
   END: "\n최종 게임 결과\n",
-  SUCCESS: "\n게임 성공 여부",
-  TRIES: "\n총 시도한 횟수:",
+  RESULT: "\n게임 성공 여부:",
+  TRIES: "총 시도한 횟수:",
+  SUCCESS: "성공",
+  FAILURE: "실패",
 };
 
 const ERROR = {
   SIZE: "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.\n",
   MOVING: "[ERROR] 이동할 칸은 U와 D 중 하나를 입력해야 합니다.\n",
 };
+
 module.exports = { INPUT, OUTPUT, ERROR };

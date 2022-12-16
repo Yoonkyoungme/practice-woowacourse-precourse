@@ -14,6 +14,7 @@ class Game {
     this.canMove;
     this.upperBrigde = [];
     this.lowerBrigde = [];
+    this.output;
     this.tries = 1;
   }
 
@@ -62,14 +63,14 @@ class Game {
         ? (this.upperBrigde.push("O"), this.lowerBrigde.push(" "))
         : (this.upperBrigde.push(" "), this.lowerBrigde.push("O"));
     }
-    OutputView.printMap(this.upperBrigde, this.lowerBrigde);
+    this.output = OutputView.printMap(this.upperBrigde, this.lowerBrigde);
   }
 
   getIndex() {
     if (!this.canMove) return (this.index = 0);
     this.index = this.canMove;
     this.index === this.bridgeSize
-      ? OutputView.printResult(this.upperBrigde, this.lowerBrigde, this.tries)
+      ? OutputView.printResult(this.output, this.tries, true)
       : this.inputMovingBridge();
   }
 }

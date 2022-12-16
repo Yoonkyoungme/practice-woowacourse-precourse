@@ -51,12 +51,10 @@ class Game {
       this.direction,
       this.index
     );
-
-    console.log(this.canMove);
-
     this.getBrigeMap();
     this.getIndex();
   }
+
   handleRetryOrQuit(command) {
     const result = Validation.checkInputCommand(command);
     if (!result) {
@@ -65,6 +63,9 @@ class Game {
 
     if (result === "R") {
       this.retryGame();
+    }
+    if (result === "Q") {
+      this.quitGame();
     }
   }
 
@@ -86,6 +87,10 @@ class Game {
     this.tries += 1;
     this.index = 0;
     this.inputMovingBridge();
+  }
+
+  quitGame() {
+    OutputView.printResult(this.output, this.tries, true);
   }
 }
 

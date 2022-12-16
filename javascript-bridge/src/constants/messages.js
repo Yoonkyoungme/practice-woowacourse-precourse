@@ -6,7 +6,7 @@ const INPUT = {
 };
 
 const OUTPUT = {
-  END: "\n최종 게임 결과\n",
+  END: "\n최종 게임 결과",
   RESULT: "\n게임 성공 여부:",
   TRIES: "총 시도한 횟수:",
   SUCCESS: "성공",

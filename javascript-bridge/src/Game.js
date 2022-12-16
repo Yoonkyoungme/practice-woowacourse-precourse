@@ -14,6 +14,7 @@ class Game {
     this.canMove;
     this.upperBrigde = [];
     this.lowerBrigde = [];
+    this.tries = 1;
   }
 
   inputBridgeSize() {
@@ -65,12 +66,11 @@ class Game {
   }
 
   getIndex() {
-    if (!this.canMove) {
-      this.index = 0;
-    } else {
-      this.index = this.canMove;
-      this.inputMovingBridge();
-    }
+    if (!this.canMove) return (this.index = 0);
+    this.index = this.canMove;
+    this.index === this.bridgeSize
+      ? OutputView.printResult(this.upperBrigde, this.lowerBrigde, this.tries)
+      : this.inputMovingBridge();
   }
 }
 

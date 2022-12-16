@@ -58,6 +58,17 @@ class Game {
 
   handleRetryOrQuit(command) {
     const result = Validation.checkInputCommand(command);
+    if (!result) {
+      return this.inputRetryOrQuit();
+    }
+
+    if (result === "R") {
+      this.index = 0;
+      this.tries += 1;
+      this.upperBrigde = [];
+      this.lowerBrigde = [];
+      this.inputMovingBridge();
+    }
   }
 
   makeMap() {

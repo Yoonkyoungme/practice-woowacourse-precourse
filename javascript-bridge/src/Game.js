@@ -2,6 +2,7 @@ const BridgeMaker = require("./BridgeMaker");
 const BridgeGame = require("./BridgeGame");
 const BridgeRandomNumberGenerator = require("./BridgeRandomNumberGenerator");
 const InputView = require("./InputView");
+const OutputView = require("./OutputView");
 const Validation = require("./Validation");
 
 class Game {
@@ -61,6 +62,7 @@ class Game {
         : (this.upperBrigde.push(" "), this.lowerBrigde.push("O"));
     }
     console.log(this.upperBrigde, this.lowerBrigde);
+    OutputView.printMap(this.upperBrigde, this.lowerBrigde);
   }
 
   getIndex() {

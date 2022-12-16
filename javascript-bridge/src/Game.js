@@ -7,13 +7,12 @@ const Validation = require("./Validation");
 
 class Game {
   constructor() {
+    this.bridgeGame = new BridgeGame();
     this.brigeList;
     this.bridgeSize;
     this.direction;
     this.index = 0;
     this.canMove;
-    this.upperBrigde = [];
-    this.lowerBrigde = [];
     this.output;
     this.tries = 1;
   }
@@ -45,17 +44,19 @@ class Game {
 
   handleMovingBridge(moving) {
     this.direction = Validation.checkInputMoving(moving);
+
     if (!this.direction) return this.inputMovingBridge();
-    this.canMove = new BridgeGame().move(
+    this.canMove = this.bridgeGame.move(
       this.brigeList,
       this.direction,
       this.index
     );
 
-    this.makeMap();
+    console.log(this.canMove);
+
+    this.getBrigeMap();
     this.getIndex();
   }
-
   handleRetryOrQuit(command) {
     const result = Validation.checkInputCommand(command);
     if (!result) {
@@ -63,33 +64,28 @@ class Game {
     }
 
     if (result === "R") {
-      this.index = 0;
-      this.tries += 1;
-      this.upperBrigde = [];
-      this.lowerBrigde = [];
-      this.inputMovingBridge();
+      this.retryGame();
     }
   }
 
-  makeMap() {
-    if (!this.canMove) {
-      this.direction === "U"
-        ? (this.upperBrigde.push("X"), this.lowerBrigde.push(" "))
-        : (this.upperBrigde.push(" "), this.lowerBrigde.push("X"));
-    } else {
-      this.direction === "U"
-        ? (this.upperBrigde.push("O"), this.lowerBrigde.push(" "))
-        : (this.upperBrigde.push(" "), this.lowerBrigde.push("O"));
-    }
-    this.output = OutputView.printMap(this.upperBrigde, this.lowerBrigde);
+  getBrigeMap() {
+    const result = this.bridgeGame.sendBridgeMap();
+    this.output = OutputView.printMap(result);
   }
 
   getIndex() {
     if (!this.canMove) return this.inputRetryOrQuit();
-    this.index = this.canMove;
+    this.index += 1;
     this.index === this.bridgeSize
       ? OutputView.printResult(this.output, this.tries, true)
       : this.inputMovingBridge();
+  }
+
+  retryGame() {
+    const newTries = this.bridgeGame.retry();
+    this.tries += 1;
+    this.index = 0;
+    this.inputMovingBridge();
   }
 }
 

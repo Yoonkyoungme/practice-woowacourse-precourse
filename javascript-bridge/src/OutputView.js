@@ -10,10 +10,8 @@ const OutputView = {
    * <p>
    * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
-  printMap(upperBrigde, lowerBrigde) {
-    const output = `[ ${upperBrigde.join(" | ")} ]\n[ ${lowerBrigde.join(
-      " | "
-    )} ]`;
+  printMap(result) {
+    const output = `[ ${result[0].join(" | ")} ]\n[ ${result[1].join(" | ")} ]`;
     Console.print(output);
     return output;
   },
@@ -28,11 +26,20 @@ const OutputView = {
     Console.print(output);
 
     if (result) {
-      Console.print(`${OUTPUT.RESULT} ${OUTPUT.SUCCESS}`);
+      this.printSuccess();
     } else {
-      Console.print(`${OUTPUT.RESULT} ${OUTPUT.FAILURE}`);
+      this.printFailure();
     }
     Console.print(`${OUTPUT.TRIES} ${tries}`);
+    Console.close();
+  },
+
+  printSuccess() {
+    Console.print(`${OUTPUT.RESULT} ${OUTPUT.SUCCESS}`);
+  },
+
+  printFailure() {
+    Console.print(`${OUTPUT.RESULT} ${OUTPUT.FAILURE}`);
   },
 };
 

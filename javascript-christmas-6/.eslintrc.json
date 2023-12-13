@@ -1,0 +1,27 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["airbnb-base", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    // 들여쓰기 깊이 제한
+    "max-depth": ["error", 2],
+    // 함수의 길이 제한
+    "max-lines-per-function": ["error", 15],
+    // 함수의 매개변수 개수 제한
+    // "max-params": ["error", 3],
+    "indent": ["error", 2],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "eqeqeq": "error",
+    "no-console": "warn",
+    "no-dupe-args": "error",
+    "no-unreachable": "error",
+    "no-unused-vars": "warn"
+  }
+}

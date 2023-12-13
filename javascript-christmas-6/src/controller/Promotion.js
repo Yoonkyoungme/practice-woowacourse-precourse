@@ -1,3 +1,4 @@
+import VisitDate from '../domain/models/VisitDate.js';
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
 
@@ -12,8 +13,12 @@ class Promotion {
   }
 
   async readVisitDate() {
-    const input = await InputView.readDate();
-    return input;
+    try {
+      return new VisitDate(await InputView.readDate());
+    } catch (error) {
+      OutputView.print(error.message);
+      return this.readVisitDate();
+    }
   }
 
   async readOrder() {

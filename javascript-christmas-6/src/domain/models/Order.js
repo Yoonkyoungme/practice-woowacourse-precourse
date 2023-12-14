@@ -4,6 +4,8 @@ import { ERROR_MESSAGES } from '../../utils/constants/messages.js';
 class Order {
   #order;
 
+  #orderMenus;
+
   constructor(inputOrder) {
     this.#order = this.splitInput(inputOrder);
     this.validate();
@@ -51,14 +53,18 @@ class Order {
   }
 
   isUniqueMenu() {
-    const menus = this.#order.map((order) => order[0]);
-    if (new Set(menus).size !== menus.length) {
+    this.#orderMenus = this.#order.map((order) => order[0]);
+    if (new Set(this.#orderMenus).size !== this.#orderMenus.length) {
       throw new Error(ERROR_MESSAGES.ORDER);
     }
   }
 
   getOrder() {
     return this.#order;
+  }
+
+  getOrderMenus() {
+    return this.#orderMenus;
   }
 }
 

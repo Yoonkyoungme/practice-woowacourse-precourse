@@ -11,6 +11,10 @@ const OutputView = {
   printPreView(visitDate) {
     Console.print(OUTPUT_MESSAGES.PREVIEW(visitDate));
   },
+  printMenu(order) {
+    Console.print(OUTPUT_MESSAGES.MENU);
+    order.map(([menu, quantity]) => Console.print(`${menu} ${quantity}개`));
+  },
 };
 
 export default OutputView;

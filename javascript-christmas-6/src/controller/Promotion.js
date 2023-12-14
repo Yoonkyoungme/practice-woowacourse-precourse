@@ -13,11 +13,13 @@ class Promotion {
     OutputView.printIntro();
     this.#visitDate = await this.readVisitDate();
     this.#order = await this.readOrder();
+    this.printPlanner();
   }
 
   async readVisitDate() {
     try {
-      return new VisitDate(await InputView.readDate());
+      const date = new VisitDate(await InputView.readDate());
+      return date.getVisitDate();
     } catch (error) {
       OutputView.print(error.message);
       return this.readVisitDate();
@@ -31,6 +33,10 @@ class Promotion {
       OutputView.print(error.message);
       return this.readOrder();
     }
+  }
+
+  printPlanner() {
+    OutputView.printPreView(this.#visitDate);
   }
 }
 

@@ -8,8 +8,8 @@ const OutputView = {
   printIntro() {
     Console.print(OUTPUT_MESSAGES.INTRO);
   },
-  printMenu() {
-    Console.print('<주문 메뉴>');
+  printPreView(visitDate) {
+    Console.print(OUTPUT_MESSAGES.PREVIEW(visitDate));
   },
 };
 

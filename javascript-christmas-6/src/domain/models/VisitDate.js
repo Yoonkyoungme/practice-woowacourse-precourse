@@ -1,29 +1,32 @@
 import { ERROR_MESSAGES } from '../../utils/constants/messages.js';
 
 class VisitDate {
+  #visitDate;
+
   constructor(inputDate) {
-    this.date = this.validate(inputDate);
+    this.#visitDate = inputDate;
+    this.validate();
   }
 
-  validate(inputDate) {
-    this.isNumber(inputDate);
-    this.isInRange(inputDate);
+  validate() {
+    this.isNumber();
+    this.isInRange();
   }
 
-  isNumber(inputDate) {
-    if (!Number.isInteger(Number(inputDate))) {
+  isNumber() {
+    if (!Number.isInteger(Number(this.#visitDate))) {
       throw new Error(ERROR_MESSAGES.DATE);
     }
   }
 
-  isInRange(inputDate) {
-    if (inputDate < 1 || inputDate > 31) {
+  isInRange() {
+    if (this.#visitDate < 1 || this.#visitDate > 31) {
       throw new Error(ERROR_MESSAGES.DATE);
     }
   }
 
   getVisitDate() {
-    return this.getVisitDate;
+    return Number(this.#visitDate);
   }
 }
 

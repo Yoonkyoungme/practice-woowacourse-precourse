@@ -9,10 +9,13 @@ class Promotion {
 
   #order;
 
+  #evnets;
+
   async start() {
     OutputView.printIntro();
     this.#visitDate = await this.readVisitDate();
     this.#order = await this.readOrder();
+    this.#evnets = new EventPlanner(this.#visitDate, this.#order);
     this.printPlanner();
   }
 
@@ -37,6 +40,7 @@ class Promotion {
   printPlanner() {
     OutputView.printPreView(this.#visitDate.getVisitDate());
     OutputView.printMenu(this.#order.getOrder());
+    OutputView.printBeforeDiscount(this.#evnets.getBeforeDiscount());
   }
 }
 

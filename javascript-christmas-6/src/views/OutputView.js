@@ -15,6 +15,10 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGES.MENU);
     order.map(([menu, quantity]) => Console.print(`${menu} ${quantity}개`));
   },
+  printBeforeDiscount(totalPrice) {
+    Console.print(OUTPUT_MESSAGES.BEFORE_DISCOUNT);
+    Console.print(`${totalPrice.toLocaleString('ko-KR')}원`);
+  },
 };
 
 export default OutputView;

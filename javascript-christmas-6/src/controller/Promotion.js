@@ -1,5 +1,6 @@
 import VisitDate from '../domain/models/VisitDate.js';
 import Order from '../domain/models/Order.js';
+import EventPlanner from '../domain/EventPlanner.js';
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
 
@@ -9,6 +10,7 @@ class Promotion {
   #order;
 
   async start() {
+    OutputView.printIntro();
     this.#visitDate = await this.readVisitDate();
     this.#order = await this.readOrder();
   }

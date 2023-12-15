@@ -15,7 +15,7 @@ class CarRace {
 
   async readCarNames() {
     try {
-      return new CarNames(await InputView.readCarNames());
+      return new CarNames(await InputView.readCarNames()).getCarNames();
     } catch (error) {
       OutputView.print(error.message);
     }
@@ -23,10 +23,14 @@ class CarRace {
 
   async readRaceTimes() {
     try {
-      return new RaceTimes(await InputView.readRaceTimes());
+      return new RaceTimes(await InputView.readRaceTimes()).getRaceTimes();
     } catch (error) {
       OutputView.print(error.message);
     }
+  }
+
+  getRandomNumber() {
+    return Math.floor(Math.random() * 10);
   }
 }
 

@@ -19,6 +19,10 @@ class RaceTimes {
       throw new Error(ERROR_MESSAGES.INVALID_RACE_TIMES);
     }
   }
+
+  getRaceTimes() {
+    return Number(this.#raceTimes);
+  }
 }
 
 export default RaceTimes;

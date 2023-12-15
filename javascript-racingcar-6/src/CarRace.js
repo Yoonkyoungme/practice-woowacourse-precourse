@@ -60,6 +60,7 @@ class CarRace {
     const gameBoard = this.initRaceBoards();
     for (let i = 0; i < this.#raceTimes; i++) {
       this.updateCarPositions(gameBoard);
+      OutputView.printRaceResult(gameBoard);
     }
   }
 }

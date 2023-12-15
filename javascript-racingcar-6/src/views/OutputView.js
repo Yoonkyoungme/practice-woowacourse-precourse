@@ -9,6 +9,11 @@ const OutputView = {
   printResultTitle() {
     Console.print(OUTPUT_MESSAGES.RESULT_TITLE);
   },
+
+  printRaceResult(result) {
+    result.forEach((move, carName) => Console.print(`${carName} : ${move}`));
+    Console.print('');
+  },
 };
 
 export default OutputView;

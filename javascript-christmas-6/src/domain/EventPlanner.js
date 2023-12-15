@@ -92,6 +92,12 @@ class EventPlanner {
     benefitList.set(FREE_GIFT, this.calculateFreeGiftDiscount());
     return benefitList;
   }
+
+  getTotalBenefits() {
+    const benefitList = this.getBenefitList();
+
+    return [...benefitList.values()].reduce((acc, cur) => acc + cur, 0);
+  }
 }
 
 export default EventPlanner;

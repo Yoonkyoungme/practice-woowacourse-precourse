@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import { OUTPUT_MESSAGES } from '../utils/constants/messages.js';
-import { FREE_GIFT, NOTHING } from '../utils/constants/events.js';
+import { FREE_GIFT, NO_DISCOUNT, NOTHING } from '../utils/constants/events.js';
 
 const OutputView = {
   print(message) {
@@ -45,6 +45,15 @@ const OutputView = {
     benefitList.forEach((discount, message) => {
       Console.print(`${message} -${discount.toLocaleString('ko-KR')}원`);
     });
+  },
+
+  printTotalBenefits(totalBenefits) {
+    Console.print(OUTPUT_MESSAGES.TOTAL_BENEFIT);
+    Console.print(
+      totalBenefits === NO_DISCOUNT
+        ? `${NO_DISCOUNT}원`
+        : `-${totalBenefits.toLocaleString('ko-KR')}원`,
+    );
   },
 };
 

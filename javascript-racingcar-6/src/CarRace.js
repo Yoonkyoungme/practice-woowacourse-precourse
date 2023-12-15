@@ -19,6 +19,7 @@ class CarRace {
       return new CarNames(await InputView.readCarNames()).getCarNames();
     } catch (error) {
       OutputView.print(error.message);
+      throw error;
     }
   }
 
@@ -27,6 +28,7 @@ class CarRace {
       return new RaceTimes(await InputView.readRaceTimes()).getRaceTimes();
     } catch (error) {
       OutputView.print(error.message);
+      throw error;
     }
   }
 

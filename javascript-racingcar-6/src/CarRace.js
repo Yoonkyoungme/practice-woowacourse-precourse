@@ -45,9 +45,22 @@ class CarRace {
     return gameBoard;
   }
 
+  updateCarPositions(gameBoard) {
+    this.#carNames.forEach((carName) => {
+      const randomNumber = this.getRandomNumber();
+      if (randomNumber >= 4) {
+        gameBoard.set(carName, `${gameBoard.get(carName)}-`);
+      }
+    });
+  }
+
   playRacingGame() {
+    OutputView.printResultTitle();
+
     const gameBoard = this.initRaceBoards();
-    return gameBoard;
+    for (let i = 0; i < this.#raceTimes; i++) {
+      this.updateCarPositions(gameBoard);
+    }
   }
 }
 

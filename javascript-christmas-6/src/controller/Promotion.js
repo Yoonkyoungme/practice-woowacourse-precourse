@@ -42,6 +42,7 @@ class Promotion {
     OutputView.printMenu(this.#order.getOrder());
     OutputView.printBeforeDiscount(this.#evnets.getBeforeDiscount());
     OutputView.printFreeGift(this.#evnets.canReceiveFreeGift());
+    OutputView.printBenefitList(this.#evnets.getBenefitList());
   }
 }
 

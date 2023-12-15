@@ -38,6 +38,14 @@ const OutputView = {
       Console.print(NOTHING);
     }
   },
+
+  printBenefitList(benefitList) {
+    Console.print(OUTPUT_MESSAGES.BENEFITS);
+
+    benefitList.forEach((discount, message) => {
+      Console.print(`${message} -${discount.toLocaleString('ko-KR')}원`);
+    });
+  },
 };
 
 export default OutputView;

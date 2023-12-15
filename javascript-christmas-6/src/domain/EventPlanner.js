@@ -1,5 +1,9 @@
 import { MENU, DRINKS, DESSERTS, MAINS } from '../utils/constants/menus.js';
-import { CHRISTMAS, NO_DISCOUNT } from '../utils/constants/discount.js';
+import {
+  CHRISTMAS,
+  DAY_OF_WEEK,
+  NO_DISCOUNT,
+} from '../utils/constants/discount.js';
 import { EVENT_MESSAGES } from '../utils/constants/messages.js';
 
 class EventPlanner {
@@ -20,13 +24,21 @@ class EventPlanner {
   }
 
   calculateChristmasDiscount() {
-    if (this.#visitDate <= CHRISTMAS.EVENT_D_DAY) {
-      return (
-        CHRISTMAS.BASE_DISCOUNT +
-        CHRISTMAS.DISCOUNT_INCREASE * (this.#visitDate - 1)
-      );
+    const { EVENT_D_DAY, BASE_DISCOUNT, DISCOUNT_INCREASE } = CHRISTMAS;
+
+    if (this.#visitDate <= EVENT_D_DAY) {
+      return BASE_DISCOUNT + DISCOUNT_INCREASE * (this.#visitDate - 1);
     }
     return NO_DISCOUNT;
+  }
+
+  calculateWeekdayDiscount() {
+    return this.#order.getOrder().reduce((acc, [menu, quantity]) => {
+      if (DESSERTS.includes(menu)) {
+        return acc + quantity * DAY_OF_WEEK;
+      }
+      return acc;
+    }, 0);
   }
 
   getBenefitList() {
@@ -34,6 +46,8 @@ class EventPlanner {
     const { CHRISTMAS, WEEKDAY, WEEKEND, SPECIAL, FREE_GIFT } = EVENT_MESSAGES;
 
     benefitList.set(CHRISTMAS, this.calculateChristmasDiscount());
+    benefitList.set(WEEKDAY, this.calculateWeekdayDiscount());
+    return benefitList;
   }
 }
 

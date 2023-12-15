@@ -4,4 +4,5 @@ export const CHRISTMAS = {
   DISCOUNT_INCREASE: 100,
 };
 
+export const DAY_OF_WEEK = 2_023;
 export const NO_DISCOUNT = 0;

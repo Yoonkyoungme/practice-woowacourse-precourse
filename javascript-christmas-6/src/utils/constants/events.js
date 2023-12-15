@@ -10,6 +10,20 @@ export const FREE_GIFT = {
   FREE_GIFT_MENU: '샴페인',
   FREE_GIFT_QUANTITY: 1,
 };
+export const BADGE = {
+  STAR: {
+    BASE_PRICE: 5_000,
+    ITEM: '별',
+  },
+  TREE: {
+    BASE_PRICE: 10_000,
+    ITEM: '트리',
+  },
+  SANTA: {
+    BASE_PRICE: 20_000,
+    ITEM: '산타',
+  },
+};
 
 export const NO_DISCOUNT = 0;
 export const NOTHING = '없음';

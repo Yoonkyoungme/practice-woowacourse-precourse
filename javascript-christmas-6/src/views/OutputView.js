@@ -60,6 +60,11 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGES.AFTER_DISCOUNT);
     Console.print(`${totalPrice.toLocaleString('ko-KR')}원`);
   },
+
+  printEventBadge(eventBadge) {
+    Console.print(OUTPUT_MESSAGES.EVENT_BADGE);
+    Console.print(eventBadge);
+  },
 };
 
 export default OutputView;

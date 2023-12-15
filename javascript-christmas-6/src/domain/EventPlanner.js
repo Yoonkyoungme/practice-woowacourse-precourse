@@ -4,6 +4,7 @@ import {
   DAY_OF_WEEK,
   SPECIAL,
   FREE_GIFT,
+  BADGE,
   NO_DISCOUNT,
   NOTHING,
 } from '../utils/constants/events.js';
@@ -107,6 +108,22 @@ class EventPlanner {
       return totalPrice - totalBenefits + MENU[FREE_GIFT.FREE_GIFT_MENU];
     }
     return totalPrice - totalBenefits;
+  }
+
+  getEventBadge() {
+    const totalBenefits = this.getTotalBenefits();
+    const { STAR, TREE, SANTA } = BADGE;
+
+    if (totalBenefits >= SANTA.BASE_PRICE) {
+      return SANTA.ITEM;
+    }
+    if (totalBenefits >= TREE.BASE_PRICE) {
+      return BADGE.TREE.ITEM;
+    }
+    if (totalBenefits >= STAR.BASE_PRICE) {
+      return STAR.ITEM;
+    }
+    return NOTHING;
   }
 }
 

@@ -45,6 +45,7 @@ class Promotion {
     OutputView.printBenefitList(this.#evnets.getBenefitList());
     OutputView.printTotalBenefits(this.#evnets.getTotalBenefits());
     OutputView.printaAfterDiscount(this.#evnets.getAfterDiscount());
+    OutputView.printEventBadge(this.#evnets.getEventBadge());
   }
 }
 

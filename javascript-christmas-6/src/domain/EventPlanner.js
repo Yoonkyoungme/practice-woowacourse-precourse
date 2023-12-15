@@ -98,6 +98,16 @@ class EventPlanner {
 
     return [...benefitList.values()].reduce((acc, cur) => acc + cur, 0);
   }
+
+  getAfterDiscount() {
+    const totalPrice = this.getBeforeDiscount();
+    const totalBenefits = this.getTotalBenefits();
+
+    if (this.canReceiveFreeGift()) {
+      return totalPrice - totalBenefits + MENU[FREE_GIFT.FREE_GIFT_MENU];
+    }
+    return totalPrice - totalBenefits;
+  }
 }
 
 export default EventPlanner;

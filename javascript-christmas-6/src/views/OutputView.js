@@ -55,6 +55,11 @@ const OutputView = {
         : `-${totalBenefits.toLocaleString('ko-KR')}원`,
     );
   },
+
+  printaAfterDiscount(totalPrice) {
+    Console.print(OUTPUT_MESSAGES.AFTER_DISCOUNT);
+    Console.print(`${totalPrice.toLocaleString('ko-KR')}원`);
+  },
 };
 
 export default OutputView;

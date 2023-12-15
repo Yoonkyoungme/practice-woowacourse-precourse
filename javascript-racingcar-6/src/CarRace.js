@@ -8,9 +8,12 @@ class CarRace {
 
   #raceTimes;
 
+  #gameBoard;
+
   async start() {
     this.#carNames = await this.readCarNames();
     this.#raceTimes = await this.readRaceTimes();
+    this.#gameBoard = this.playRacingGame();
   }
 
   async readCarNames() {
@@ -31,6 +34,20 @@ class CarRace {
 
   getRandomNumber() {
     return Math.floor(Math.random() * 10);
+  }
+
+  initRaceBoards() {
+    const gameBoard = new Map();
+    this.#carNames.forEach((carName) => {
+      gameBoard.set(carName, '');
+    });
+
+    return gameBoard;
+  }
+
+  playRacingGame() {
+    const gameBoard = this.initRaceBoards();
+    return gameBoard;
   }
 }
 

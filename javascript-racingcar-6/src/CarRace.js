@@ -1,3 +1,4 @@
+import CarNames from './domain/models/CarNames.js';
 import InputView from './views/InputView.js';
 import OutputView from './views/OutputView.js';
 
@@ -9,8 +10,11 @@ class CarRace {
   }
 
   async readCarNames() {
-    const input = await InputView.readCarNames();
-    return input;
+    try {
+      return new CarNames(await InputView.readCarNames());
+    } catch (error) {
+      OutputView.print(error.message);
+    }
   }
 }
 

@@ -1,3 +1,5 @@
+export const BASE_PRICE = 10_000;
+
 export const CHRISTMAS = {
   EVENT_D_DAY: 25,
   BASE_DISCOUNT: 1_000,

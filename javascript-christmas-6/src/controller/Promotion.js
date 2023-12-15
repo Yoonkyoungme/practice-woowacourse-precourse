@@ -3,19 +3,20 @@ import Order from '../domain/models/Order.js';
 import EventPlanner from '../domain/EventPlanner.js';
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
+import { BASE_PRICE } from '../utils/constants/events.js';
 
 class Promotion {
   #visitDate;
 
   #order;
 
-  #evnets;
+  #events;
 
   async start() {
     OutputView.printIntro();
     this.#visitDate = await this.readVisitDate();
     this.#order = await this.readOrder();
-    this.#evnets = new EventPlanner(this.#visitDate, this.#order);
+    this.#events = new EventPlanner(this.#visitDate, this.#order);
     this.printPlanner();
   }
 
@@ -37,15 +38,25 @@ class Promotion {
     }
   }
 
+  canApplyEvents() {
+    return this.#events.getBeforeDiscount() >= BASE_PRICE;
+  }
+
+  applyEvents() {
+    OutputView.printFreeGift(this.#events.canReceiveFreeGift());
+    OutputView.printBenefitList(this.#events.getBenefitList());
+    OutputView.printTotalBenefits(this.#events.getTotalBenefits());
+  }
+
   printPlanner() {
     OutputView.printPreView(this.#visitDate.getVisitDate());
     OutputView.printMenu(this.#order.getOrder());
-    OutputView.printBeforeDiscount(this.#evnets.getBeforeDiscount());
-    OutputView.printFreeGift(this.#evnets.canReceiveFreeGift());
-    OutputView.printBenefitList(this.#evnets.getBenefitList());
-    OutputView.printTotalBenefits(this.#evnets.getTotalBenefits());
-    OutputView.printaAfterDiscount(this.#evnets.getAfterDiscount());
-    OutputView.printEventBadge(this.#evnets.getEventBadge());
+    OutputView.printBeforeDiscount(this.#events.getBeforeDiscount());
+    if (this.canApplyEvents) {
+      this.applyEvents();
+    }
+    OutputView.printaAfterDiscount(this.#events.getAfterDiscount());
+    OutputView.printEventBadge(this.#events.getEventBadge());
   }
 }
 

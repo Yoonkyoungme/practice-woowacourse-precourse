@@ -3,8 +3,10 @@ import {
   CHRISTMAS,
   DAY_OF_WEEK,
   SPECIAL,
+  FREE_GIFT,
   NO_DISCOUNT,
-} from '../utils/constants/discount.js';
+  NOTHING,
+} from '../utils/constants/events.js';
 import { EVENT_MESSAGES } from '../utils/constants/messages.js';
 import findDayOfWeek from '../utils/common/findDayOfWeek.js';
 
@@ -23,6 +25,15 @@ class EventPlanner {
       const [menu, quantity] = cur;
       return acc + MENU[menu] * quantity;
     }, 0);
+  }
+
+  canReceiveFreeGift() {
+    const totalPrice = this.getBeforeDiscount();
+
+    if (totalPrice >= FREE_GIFT.BASE_PRICE) {
+      return true;
+    }
+    return false;
   }
 
   calculateChristmasDiscount() {
@@ -59,6 +70,13 @@ class EventPlanner {
     return NO_DISCOUNT;
   }
 
+  calculateFreeGiftDiscount() {
+    if (this.canReceiveFreeGift()) {
+      return MENU[FREE_GIFT.FREE_GIFT_MENU];
+    }
+    return NO_DISCOUNT;
+  }
+
   getBenefitList() {
     const benefitList = new Map();
     const { CHRISTMAS, WEEKDAY, WEEKEND, SPECIAL, FREE_GIFT } = EVENT_MESSAGES;
@@ -71,7 +89,7 @@ class EventPlanner {
       benefitList.set(WEEKEND, this.calculateWeekend());
     }
     benefitList.set(SPECIAL, this.calculateSpecialDiscount(dayOfWeek));
-
+    benefitList.set(FREE_GIFT, this.calculateFreeGiftDiscount());
     return benefitList;
   }
 }

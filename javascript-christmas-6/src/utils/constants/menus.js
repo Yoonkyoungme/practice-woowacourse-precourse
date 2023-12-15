@@ -23,5 +23,3 @@ export const MAINS = [
   '해산물파스타',
   '크리스마스파스타',
 ];
-
-export const FREE_GIFT = '샴페인';

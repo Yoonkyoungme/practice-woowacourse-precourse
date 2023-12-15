@@ -8,12 +8,10 @@ class CarRace {
 
   #raceTimes;
 
-  #gameBoard;
-
   async start() {
     this.#carNames = await this.readCarNames();
     this.#raceTimes = await this.readRaceTimes();
-    this.#gameBoard = this.playRacingGame();
+    this.playRacingGame();
   }
 
   async readCarNames() {
@@ -54,6 +52,16 @@ class CarRace {
     });
   }
 
+  getWinners(gameBoard) {
+    const counts = [...gameBoard.values()].map((move) => move.length);
+    const maxCount = Math.max(...counts);
+    const winners = [...gameBoard.keys()].filter(
+      (carName, index) => counts[index] === maxCount,
+    );
+
+    return winners;
+  }
+
   playRacingGame() {
     OutputView.printResultTitle();
 
@@ -62,6 +70,8 @@ class CarRace {
       this.updateCarPositions(gameBoard);
       OutputView.printRaceResult(gameBoard);
     }
+
+    OutputView.printWinners(this.getWinners(gameBoard));
   }
 }
 

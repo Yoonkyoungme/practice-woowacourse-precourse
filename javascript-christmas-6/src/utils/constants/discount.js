@@ -5,4 +5,5 @@ export const CHRISTMAS = {
 };
 
 export const DAY_OF_WEEK = 2_023;
+export const SPECIAL = 1_000;
 export const NO_DISCOUNT = 0;

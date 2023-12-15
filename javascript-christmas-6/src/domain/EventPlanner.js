@@ -2,6 +2,7 @@ import { MENU, DRINKS, DESSERTS, MAINS } from '../utils/constants/menus.js';
 import {
   CHRISTMAS,
   DAY_OF_WEEK,
+  SPECIAL,
   NO_DISCOUNT,
 } from '../utils/constants/discount.js';
 import { EVENT_MESSAGES } from '../utils/constants/messages.js';
@@ -51,6 +52,13 @@ class EventPlanner {
     }, 0);
   }
 
+  calculateSpecialDiscount(dayOfWeek) {
+    if (dayOfWeek === 0 || this.#visitDate === CHRISTMAS.EVENT_D_DAY) {
+      return SPECIAL;
+    }
+    return NO_DISCOUNT;
+  }
+
   getBenefitList() {
     const benefitList = new Map();
     const { CHRISTMAS, WEEKDAY, WEEKEND, SPECIAL, FREE_GIFT } = EVENT_MESSAGES;
@@ -62,6 +70,7 @@ class EventPlanner {
     } else {
       benefitList.set(WEEKEND, this.calculateWeekend());
     }
+    benefitList.set(SPECIAL, this.calculateSpecialDiscount(dayOfWeek));
 
     return benefitList;
   }

@@ -5,6 +5,7 @@ import {
   NO_DISCOUNT,
 } from '../utils/constants/discount.js';
 import { EVENT_MESSAGES } from '../utils/constants/messages.js';
+import findDayOfWeek from '../utils/common/findDayOfWeek.js';
 
 class EventPlanner {
   #visitDate;
@@ -41,12 +42,27 @@ class EventPlanner {
     }, 0);
   }
 
+  calculateWeekend() {
+    return this.#order.getOrder().reduce((acc, [menu, quantity]) => {
+      if (MAINS.includes(menu)) {
+        return acc + quantity * DAY_OF_WEEK;
+      }
+      return acc;
+    }, 0);
+  }
+
   getBenefitList() {
     const benefitList = new Map();
     const { CHRISTMAS, WEEKDAY, WEEKEND, SPECIAL, FREE_GIFT } = EVENT_MESSAGES;
+    const dayOfWeek = findDayOfWeek(this.#visitDate);
 
     benefitList.set(CHRISTMAS, this.calculateChristmasDiscount());
-    benefitList.set(WEEKDAY, this.calculateWeekdayDiscount());
+    if (dayOfWeek >= 0 && dayOfWeek <= 4) {
+      benefitList.set(WEEKDAY, this.calculateWeekdayDiscount());
+    } else {
+      benefitList.set(WEEKEND, this.calculateWeekend());
+    }
+
     return benefitList;
   }
 }

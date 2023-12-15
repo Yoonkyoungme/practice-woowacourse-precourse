@@ -5,8 +5,11 @@ import OutputView from './views/OutputView.js';
 class CarRace {
   #carNames;
 
+  #raceTimes;
+
   async start() {
     this.#carNames = await this.readCarNames();
+    this.#raceTimes = await this.readRaceTimes();
   }
 
   async readCarNames() {
@@ -15,6 +18,11 @@ class CarRace {
     } catch (error) {
       OutputView.print(error.message);
     }
+  }
+
+  async readRaceTimes() {
+    const input = await InputView.readRaceTimes();
+    return input;
   }
 }
 

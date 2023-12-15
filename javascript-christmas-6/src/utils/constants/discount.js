@@ -1,0 +1,7 @@
+export const CHRISTMAS = {
+  EVENT_D_DAY: 25,
+  BASE_DISCOUNT: 1_000,
+  DISCOUNT_INCREASE: 100,
+};
+
+export const NO_DISCOUNT = 0;

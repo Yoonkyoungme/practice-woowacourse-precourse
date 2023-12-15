@@ -1,4 +1,5 @@
 import CarNames from './domain/models/CarNames.js';
+import RaceTimes from './domain/models/RaceTimes.js';
 import InputView from './views/InputView.js';
 import OutputView from './views/OutputView.js';
 
@@ -21,8 +22,11 @@ class CarRace {
   }
 
   async readRaceTimes() {
-    const input = await InputView.readRaceTimes();
-    return input;
+    try {
+      return new RaceTimes(await InputView.readRaceTimes());
+    } catch (error) {
+      OutputView.print(error.message);
+    }
   }
 }
 

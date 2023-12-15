@@ -42,9 +42,17 @@ const OutputView = {
   printBenefitList(benefitList) {
     Console.print(OUTPUT_MESSAGES.BENEFITS);
 
+    let hasBenefits = false;
     benefitList.forEach((discount, message) => {
-      Console.print(`${message} -${discount.toLocaleString('ko-KR')}원`);
+      if (discount > 0) {
+        Console.print(`${message} -${discount.toLocaleString('ko-KR')}원`);
+        hasBenefits = true;
+      }
     });
+
+    if (!hasBenefits) {
+      Console.print(NOTHING);
+    }
   },
 
   printTotalBenefits(totalBenefits) {

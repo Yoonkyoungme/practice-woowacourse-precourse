@@ -37,7 +37,7 @@ class Order {
   isValidQuantity() {
     this.#order.forEach((order) => {
       const [, quantity] = order;
-      if (quantity < 1) {
+      if (!Number.isInteger(Number(quantity)) || quantity < 1) {
         throw new Error(ERROR_MESSAGES.ORDER);
       }
     });
